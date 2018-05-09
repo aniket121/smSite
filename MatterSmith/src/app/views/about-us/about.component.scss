@@ -1,0 +1,88 @@
+.login-page{
+    margin-top:10%;
+}
+
+.login-page-color{
+    background-color: #2e5480;
+}
+.login-button{
+    background-color: #9cbee5;
+    margin-bottom: 16px;
+}
+.login-image{
+    height: 34px;
+    margin-top: 27px;
+}
+.login-form{
+    width: 253px;
+    margin-left: 45px;
+}
+.login-text-color{
+    color:#2e5480;
+}
+.login-error{
+   color:firebrick; 
+}
+#adduser{
+    margin-left:-93% !important;
+}
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 1px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: gray;
+    color: white;
+}
+.closebutton
+{
+    margin-left:37%;
+}
+.ui-dialog-content ui-widget-content
+{
+    height:auto !important;
+}
+@media (max-width: 600px) {
+  .ng-trigger ng-trigger-dialogState
+  {
+    width: 0px !important;
+  }
+}
+.card-body.padding
+{
+    padding:-0.75rem important;
+}
+.removeBorder
+{
+  border:0px !important;
+}
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+.form-group {
+    margin-bottom: 0.5rem !important;
+}
+
+.scrollit
+{
+  height: 130px; overflow: scroll;
+}

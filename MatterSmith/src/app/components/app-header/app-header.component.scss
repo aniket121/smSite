@@ -1,0 +1,64 @@
+#logoutdropdown
+{
+	background-color:#2e5480 !important;
+	color:white;
+	font-size:12px;
+}
+.btn-primary{
+	background-color:#0f2d50 !important;
+}
+#header1
+{
+	z-index:-1;
+}
+.active {
+	
+	border:12px solid #00735A;	
+	background-color:#00735A;
+	color:black !important;
+
+}
+@media (max-width: 500px) {
+  .active
+  {
+   border:3px solid #FFFF94 !important;
+  }
+}
+@media (max-width: 768px) {
+  .active
+  {
+   border:3px solid #FFFF94 !important;
+  }
+}
+
+.colr{
+		color:white;
+}
+.font
+{
+	font-size: 12px;
+	color:white
+}
+.logo
+{
+	width:12% !important;
+	height: 31px;
+}
+@-moz-document url-prefix() {
+   .menuList
+{
+  margin-top:-8px !important;
+}
+}
+#topHeader{
+margin-bottom:4%;
+}
+#logo
+{
+	width: 98%;
+margin-top: 13px;
+margin-left:auto;
+color:white;
+
+}
+
