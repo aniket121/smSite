@@ -22,7 +22,12 @@ export const routes: Routes = [
   { path: 'home',component: FullLayoutComponent, loadChildren: './views/Home/home.module#DashboardModule'  },
   { path: 'about-us',component: FullLayoutComponent,loadChildren: './views/about-us/about.module#CustomerModule' },
   { path: 'contact-us',component: FullLayoutComponent, loadChildren: './views/contact-us/contact.module#UserModule' },
-   {
+  
+  { path: 'contact-us',component: FullLayoutComponent, loadChildren: './views/contact-us/contact.module#UserModule' },
+  { path: 'services',component: FullLayoutComponent, loadChildren: './views/services/services.module#ServiceModule' },
+  { path: 'review',component: FullLayoutComponent, loadChildren: './views/review/review.module#ReviewModule' },
+   { path: 'Knowledge',component: FullLayoutComponent, loadChildren: './views/knowlege/knowlege.module#KnowlegeModule' },
+  {
     path: 'pages',
     component: SimpleLayoutComponent,
     children: [
@@ -32,6 +37,10 @@ export const routes: Routes = [
       }
     ]
   },
+  { path: "login",loadChildren: './login/login.module#LoginModule'},
+  { path: "admin",component: SimpleLayoutComponent,loadChildren: './admin/admin.module#AdminModule'},
+  { path: "superadmin",component: SimpleLayoutComponent,  loadChildren: './superadmin/superadmin.module#SuperAdminModule'},
+
   
    
 

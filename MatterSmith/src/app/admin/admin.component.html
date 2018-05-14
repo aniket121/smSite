@@ -1,0 +1,219 @@
+<p-growl [(value)]="msgs"></p-growl>
+
+<p-dataTable [value]="transactions" reorderableColumns="true" selectionMode="single" resizableColumns="true" columnResizeMode="expand" [responsive]="true" [sortField]="sortField" [paginator]="true" [rows]="10" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" #dt>
+    <p-header>
+     <div class= "col-12 breadcrum">
+		<div class="row">
+				<li class="fa fa-user-plus col-2 user-header" (click)="addUser()" > Add User</li>
+
+				
+					  <select (click)="userStatus($event)"  class="container active-inactive form-control pull-right">
+						  <option  value="0">All Users</option>
+						  <option  value="1">Online</option>
+						  <option value="2">Offline</option>
+					  </select>
+				 
+
+		</div> 
+
+	 </div>
+	 
+     </p-header>
+      <p-column   field="action" header="Action" [filter]="false" [sortable]="false">
+		
+				<ng-template let-col let-user="rowData" let-i="rowIndex" pTemplate="body">
+						<div class="container h-100 d-flex justify-content-center">
+							<i class="fa fa-lock" (click)="permission(user,i)" ></i> &nbsp;&nbsp;
+							<i class="fa fa-edit" (click)="edit(user,i)" ></i> &nbsp;&nbsp;
+							<i class="fa fa-trash" (click)="delete(user,i)"></i>
+						</div>
+				</ng-template>
+
+	  </p-column>
+      <p-column field="username" header="Username" [filter]="true" [sortable]="true"></p-column>
+
+			<p-column field="online" header="Online" [filter]="true" filterMatchMode="equals">
+					<ng-template let-col let-transaction="rowData" pTemplate="filter" >
+							<p-dropdown appendTo="body" [options]="onlineuser" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-dropdown>
+					</ng-template>
+			</p-column>
+
+			<p-column field="firstname" header="Firstname" [filter]="true" [sortable]="true"></p-column>
+			<p-column field="middlename" header="Middleinitila" [filter]="true" [sortable]="true"></p-column>
+			<p-column field="lastname" header="Lastname" [filter]="true" [sortable]="true"></p-column>
+			<p-column field="email" header="Email" [filter]="true" [sortable]="true"></p-column>
+			<p-column field="country" header="Country" [filter]="true" [sortable]="true"></p-column>
+			<p-column field="roles" header="Roles" [filter]="true" [sortable]="true"></p-column>
+</p-dataTable>
+
+
+<p-dialog [(visible)]="showDialog" header="Add/Edit User">
+	<div>
+				<!-- <div  style="background-color: cornflowerblue;" class="container h-100 d-flex justify-content-center">
+						{{modal_title}}
+				</div><br> -->
+	
+          <form  method="post" (ngSubmit)="saveUser()" #userForm="ngForm" class="form-horizontal">
+            <div class="form-group row">
+				<div class="col-sm-5" >
+					<label class="container h-100 d-flex "  for="input-small">First Name:<div class="mendatory-color"> *</div>  </label>
+				</div>
+				<div class="col-sm-6">
+					<input type="text" [(ngModel)]="userObject.firstname" name="firstname" pattern="^[a-zA-Z]+$"  class="form-control form-control-sm" required #firstname="ngModel" 
+>
+
+					<div *ngIf="firstname.errors && (firstname.dirty || firstname.touched)" class="alert alert-danger" >
+                    <div [hidden]="!firstname.errors.required">
+                      Firstname is required!
+                    </div>
+                    <div [hidden]="firstname.errors.required">
+                      Firstname is required!
+                    </div>
+                    
+               </div> 
+				</div>
+				
+            </div>
+
+            <div class="form-group row">
+				<div class="col-sm-5" >
+					<label class="container h-100 d-flex"  for="input-small">Middle Initial:<div class="mendatory-color"> *</div>  </label>
+				</div>
+				<div class="col-sm-6">
+			<input type="text" name="middlename" [(ngModel)]="userObject.middlename" pattern="^[a-zA-Z]+$"  class="form-control form-control-sm" required #middlename="ngModel">
+					<div *ngIf="middlename.errors && (middlename.dirty || middlename.touched)" class="alert alert-danger" >
+                    <div [hidden]="!middlename.errors.required">
+                      Middlename is required!
+                    </div>
+                    <div [hidden]="middlename.errors.required">
+                      Middlename is required!
+                    </div>
+                    
+               </div>
+				</div>
+				 
+            </div>
+
+            <div class="form-group row">
+				<div class="col-sm-5" >
+					<label class="container h-100 d-flex" pattern="^[a-zA-Z]+$"  for="input-small">Last Name*:<div class="mendatory-color"> *</div> </label>
+				</div>
+				<div class="col-sm-6">
+					<input type="text" name="lastname" [(ngModel)]="userObject.lastname" pattern="^[a-zA-Z]+$"  required class="form-control form-control-sm" #lastname="ngModel" >
+					<div *ngIf="lastname.errors && (lastname.dirty || lastname.touched)" class="alert alert-danger" >
+                    <div [hidden]="!lastname.errors.required">
+                      Lastname is required!
+                    </div>
+                    <div [hidden]="lastname.errors.required">
+                      Lastname is required!
+                    </div>
+                    
+               </div> 
+				</div>
+				
+            </div>
+
+            <div class="form-group row">
+				<div class="col-sm-5" >
+					<label class="container h-100 d-flex "  for="input-small">Email ID:<div class="mendatory-color">*</div> </label>
+				</div>
+				<div class="col-sm-6">
+					<input type="text" name="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" [(ngModel)]="userObject.email" required class="form-control form-control-sm"  #email="ngModel">
+					<div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger" >
+                    <div [hidden]="!email.errors.required">
+                      Email is required!
+                    </div>
+                    <div [hidden]="email.errors.required">
+                      Email is required!
+                    </div>
+                    
+               </div> 
+				</div>
+				
+            </div>
+
+            <div class="form-group row">
+				<div class="col-sm-5" >
+					<label class="container h-100 d-flex "  for="input-small">Username:<div class="mendatory-color"> *</div> </label>
+				</div>
+				<div class="col-sm-6">
+					<input type="text" name="username" [(ngModel)]="userObject.username" required class="form-control form-control-sm"   #username="ngModel" >
+					<div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger" >
+                    <div [hidden]="!username.errors.required">
+                      Username is required!
+                    </div>
+                    <div [hidden]="username.errors.required">
+                      Username is required!
+                    </div>
+                   
+                    
+               </div> 
+				</div>
+				
+            </div>
+
+            <div class="form-group row">
+				<div class="col-sm-5" >
+					<label class="container h-100 d-flex"  for="input-small">Password:<div class="mendatory-color"> *</div> </label>
+				</div>
+				<div class="col-sm-6">
+					<input type="password" name="password"  [(ngModel)]="userObject.password" required class="form-control form-control-sm" #password="ngModel">
+					<div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger" >
+                    <div [hidden]="!password.errors.required">
+                      Password is required!
+                    </div>
+                    <div [hidden]="password.errors.required">
+                      Password is required!
+                    </div>
+                     
+                    
+               </div> 
+				</div>
+				
+            </div>
+
+            <div class="form-group row">
+							<div class="col-sm-5" >
+								<label class="container h-100 d-flex"   for="input-small">Role Select:<div class="mendatory-color"> *</div> </label>
+							</div>
+										<div class="col-sm-6">
+											<ss-multiselect-dropdown  [options]="myOptions" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown >
+											<div *ngIf="role_status" class="alert alert-danger" >
+											Please select Role
+										     </div>
+										</div>
+            </div>
+
+            <div class="form-group row">
+				<div class="col-sm-5" >
+					<label class="container  h-100 d-flex"  for="input-small">Country Select: </label>
+				</div>
+              <div class="col-sm-6">
+                <select [(ngModel)]="userObject.city" name="city"  class="container form-control h-100 d-flex">
+                  <option [ngValue]="undefined" selected>Please select</option>
+                  <option value="1">Pune</option>
+                  <option value="2">Mumbai</option>
+                  <option value="3">Delhi</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="form-group row container h-100 d-flex justify-content-center">
+				<button type="submit" [disabled]="userForm.form.invalid"  class="btn">Save</button> <div class="col-2"></div>
+				<button (click)="showDialog = !showDialog" class="btn">Close</button>
+            </div>
+
+          </form>
+	</div>
+</p-dialog>
+
+<p-dialog [(visible)]="deleteDialog" header="Delete User">
+				
+				<h6 class="popup-title container h-100 d-flex justify-content-center">Do you want to delete User</h6>
+				<div class="form-group row container h-100 d-flex justify-content-center">
+					<button (click)="deleteUser()" class="btn">Yes</button><div class="col-2"></div>
+					<button (click)="deleteDialog = !deleteDialog" class="btn">Close</button>
+				</div>
+</p-dialog>
+

@@ -22,6 +22,7 @@ import {
   AppAsideComponent,
   AppBreadcrumbsComponent,
   AppFooterComponent,
+  HeaderComponent,
   AppHeaderComponent,
   AppSidebarComponent,
   AppSidebarFooterComponent,
@@ -35,6 +36,7 @@ const APP_COMPONENTS = [
   AppAsideComponent,
   AppBreadcrumbsComponent,
   AppFooterComponent,
+  HeaderComponent,
   AppHeaderComponent,
   AppSidebarComponent,
   AppSidebarFooterComponent,
@@ -66,6 +68,8 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { SuperadminComponent } from './superadmin/superadmin.component';
+import { AdminComponent } from './admin/admin.component';
 // import { LoginComponent } from './login/login.component';
 
 @NgModule({

@@ -1,7 +1,7 @@
 
 
   <header id="topHeader">
-  <img id="logo" src="/assets/img/smithlogo.png" >
+  <img src="/assets/img/smithlogo.png" >
 
 
     <!--   <header class="app-header" style=" background-color:#2e5480">
@@ -76,14 +76,8 @@
             <a >
               <a class="col-1 colr font"  routerLink="/contact-us" routerLinkActive="active"  ><i class="fa fa-phone icon" > Contact us</i></a>      
             </a>
-             <a >
-              <a class="col-1 colr font"  routerLink="/services" routerLinkActive="active"  ><i class="fa fa-phone icon" >Services</i></a>      
-            </a>
             <a>
-              <a class="col-1 colr font" routerLink="/Knowledge" routerLinkActive="active"><i class="fa fa-book icon"> Knowledge</i></a>      
-            </a>
-            <a>
-              <a class="col-1 colr font" routerLink="/review" routerLinkActive="active"><i class="fa fa-search icon"> Review</i></a>      
+              <a class="col-1 colr font" target="_blank" href="0.0.0.0:9000" routerLinkActive="active"><i class="fa fa-sign-in-alt icon">Knowledge</i></a>      
             </a>
            
               

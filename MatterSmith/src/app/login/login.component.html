@@ -6,23 +6,8 @@
         <div class="card-group">
           <div class="card p-4">
 
-          <form [hidden]="!login_state" class="form-group center" (ngSubmit)="navigateDashboard()" #roleForm="ngForm">
-              <div class="container h-100 d-flex justify-content-center" >
-                <label  for="input-small"><b>Please select a role</b> </label>
-              </div>
-              <div class="container h-100 d-flex justify-content-center">
-                <select (click)="selectRole($event)" class="container form-control h-100 d-flex">
-                  <option value='0'>Please select Role</option>
-                  <option *ngFor="let list of role_list" value={{list.name}} >{{list.name}}</option>
-                </select>
-              </div><br>
-              <div class="col-6 ">
-                  <button type="submit" id="roleLogin" [disabled]="!roleForm.form.valid" class="btn btn-primary px-4 ">Next</button>
-              </div>
-          </form>
-
             <form [hidden]="login_state" class="card-body" (ngSubmit)="login()" #loginForm="ngForm">
-               <img class="login-image container h-100 d-flex justify-content-center"  src="assets/img/imgpsh_fullsize.png"/>
+               <img class="login-image container h-100 d-flex justify-content-center"  src="assets/img/smithlogo.png"/>
                <div [hidden]="validationError" class="input-group mb-2 alert alert-danger">                
                 <div class="login-error"  >Invalid Credentials</div>                
               </div>
@@ -60,7 +45,7 @@
                     </div>
                </div> 
               <div class="form-group ">
-               <label class="login-text-color"><input type="checkbox" (click)="SetRememberMe(1)"> Remember Me</label>
+           
               </div>
               <div class="row">
                 <div class="col-6 container h-100 d-flex justify-content-center">
