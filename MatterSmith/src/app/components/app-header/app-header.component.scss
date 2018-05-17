@@ -4,6 +4,15 @@
 	color:white;
 	font-size:12px;
 }
+.sublogo{
+	color:white;
+	margin-left:56%;
+	font-family: "Times New Roman";
+	 
+}
+.sublogo:hover {
+  
+}
 #logo{
 	width:30%;
 }
@@ -16,8 +25,8 @@
 }
 .active {
 	
-	border:12px solid #00735A;	
-	background-color:#00735A;
+	border:12px solid #20a8d8;	
+	background-color:#20a8d8;
 	color:black !important;
 
 }
@@ -26,6 +35,16 @@
   {
    border:3px solid #FFFF94 !important;
   }
+  #logo{
+	width:100%;
+}
+.sublogo{
+	color:white;
+	margin-left:1%;
+	font-family: "Times New Roman";
+
+}
+
 }
 @media (max-width: 768px) {
   .active
@@ -39,7 +58,8 @@
 }
 .font
 {
-	font-size: 12px;
+	font-size: 14px;
+	font-family: "Times New Roman";
 	color:white
 }
 

@@ -31,7 +31,7 @@
                </div> 
               Password
               <div class="input-group mb-2">             
-                <input type="password" pPassword class="form-control" minlength="5"  id="password" name="password" [(ngModel)]="password" required #userPassword="ngModel">
+                <input type="password"  class="form-control" minlength="5"  id="password" name="password" [(ngModel)]="password" required #userPassword="ngModel">
               </div>
               <div *ngIf="userPassword.errors && (userPassword.dirty || userPassword.touched)" class="alert alert-danger" >
                     <div [hidden]="!userPassword.errors.required">

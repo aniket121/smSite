@@ -2,8 +2,43 @@
      padding: 0 0px !important; 
 }
 #bk{
-	background-color:#F0503C
+	background-color:#F0503C;
+	border:0px !important;
+	height:300px !important;
 }
 .bgcolor{
 	color:white;
+	font-family: "Times New Roman"
+
+}
+#lawM{
+	margin-top:4% !important;
+	margin-left:5%
+}
+#techH{
+	margin-left:5%
+	
+}
+@media (max-width: 600px) {
+ #lawM{
+	margin-top:13% !important;
+	margin-left:12%
+}
+#techH{
+	margin-left:15%
+	
+}
+.app-dashboard{
+height:auto !important
+}
+  
+}
+.comapany_desc{
+	margin-left:3%;
+
+}
+.desc{
+	color:white;
+	font-family: "Times New Roman";
+	border:0px!important
 }

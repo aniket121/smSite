@@ -6,18 +6,23 @@ import { AppComponent} from '../../app.component';
 import { DashboardComponent } from './home.component';
 import { DashboardRoutingModule } from './home-routing.module';
 
+
+
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { DataTableModule } from 'primeng/primeng'; // Here
 import { PaginatorModule } from 'primeng/primeng'; // Here
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Interceptor } from '../../interceptor'
+import { Interceptor } from '../../interceptor';
+
+import { SliderModule } from 'angular-image-slider';
 
 @NgModule({
   imports: [
     DashboardRoutingModule,
     ChartsModule,
+    SliderModule,
     CommonModule,
     HttpClientModule,
     DataTableModule,
