@@ -5,7 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
+import { AppService } from './app.service';
+import { AdminService } from './admin/admin.service';
 // Import containers
 import {
   FullLayoutComponent,
@@ -72,6 +73,8 @@ import { SuperadminComponent } from './superadmin/superadmin.component';
 import { AdminComponent } from './admin/admin.component';
 // import { LoginComponent } from './login/login.component';
 
+// import { LoginComponent } from './login/login.component';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -93,7 +96,7 @@ import { AdminComponent } from './admin/admin.component';
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }],
+  },AppService,AdminService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

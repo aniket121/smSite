@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 @Component({
   // tslint:disable-next-line
   selector: 'body',

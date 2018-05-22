@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
-
-
+import { AppService } from './app.service';
+import { AdminService } from './admin/admin.service';
 // Import Containers
 import {
   FullLayoutComponent,
@@ -38,8 +38,8 @@ export const routes: Routes = [
     ]
   },
   { path: "login",loadChildren: './login/login.module#LoginModule'},
-  { path: "admin",component: SimpleLayoutComponent,loadChildren: './admin/admin.module#AdminModule'},
-  { path: "superadmin",component: SimpleLayoutComponent,  loadChildren: './superadmin/superadmin.module#SuperAdminModule'},
+  { path: "admin",component: SimpleLayoutComponent,canActivate:[AdminService],loadChildren: './admin/admin.module#AdminModule'},
+  { path: "superadmin",component: SimpleLayoutComponent,canActivate:[AppService],  loadChildren: './superadmin/superadmin.module#SuperAdminModule'},
 
   
    

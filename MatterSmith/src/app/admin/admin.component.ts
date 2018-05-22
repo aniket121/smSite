@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 import { RouterModule, Router } from '@angular/router';
 import * as _ from 'lodash'; 
+import { AdminService } from './admin.service';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  styleUrls: ['./admin.component.scss'],
+  providers:[AdminService]
 })
 export class AdminComponent implements OnInit {
 
@@ -29,11 +31,8 @@ export class AdminComponent implements OnInit {
     username: string,
     online: string,
     firstname: string,
-    middlename: string,
     lastname:string,
     email:string,
-    country:string,
-    role:string,
   }[];
   
   onlineuser :any = [];
@@ -55,96 +54,35 @@ export class AdminComponent implements OnInit {
           username: 'test',
           online: 'online',
           firstname: 'TestUser',
-          middlename: 'testmiddle',
+         
           lastname:'testLast',
           email:'ani@gmail.com',
-          country:'US',
-          role:'adminstrator',
+         
         },
         {
-          id :2,
+          id : 2,
           action:'',
-          username: 'demo',
-          online: 'offline',
-          firstname: 'DemoUser',
-          middlename: 'demomiddle',
-          lastname:'demoLast',
-          email:'pravin@gmail.com',
-          country:'India',
-          role:'User',
-        },
-        {
-          id :3,
-          action:'',
-          username: 'demo',
-          online: 'offline',
-          firstname: 'DemoUser',
-          middlename: 'demomiddle',
-          lastname:'demoLast',
-          email:'pravin@gmail.com',
-          country:'India',
-          role:'User',
-        },
-        {
-          id :4,
-          action:'',
-          username: 'demo',
-          online: 'offline',
-          firstname: 'DemoUser',
-          middlename: 'demomiddle',
-          lastname:'demoLast',
-          email:'pravin@gmail.com',
-          country:'India',
-          role:'User',
-        },
-        {
-          id :5,
-          action:'',
-          username: 'demo',
-          online: 'offline',
-          firstname: 'DemoUser',
-          middlename: 'demomiddle',
-          lastname:'demoLast',
-          email:'pravin@gmail.com',
-          country:'India',
-          role:'User',
-        },
-        {
-          id :6,
-          action:'',
-          username: 'demo',
-          online: 'offline',
-          firstname: 'DemoUser',
-          middlename: 'demomiddle',
-          lastname:'demoLast',
-          email:'pravin@gmail.com',
-          country:'India',
-          role:'User',
-        },
-        {
-          id :7,
-          action:'',
-          username: 'demo',
-          online: 'offline',
-          firstname: 'DemoUser',
-          middlename: 'demomiddle',
-          lastname:'demoLast',
-          email:'pravin@gmail.com',
-          country:'India',
-          role:'User',
-        },
-        {
-          id :8,
-          action:'',
-          username: 'demo',
+          username: 'test1',
           online: 'online',
-          firstname: 'DemoUser',
-          middlename: 'demomiddle',
-          lastname:'demoLast',
-          email:'pravin@gmail.com',
-          country:'India',
-          role:'User',
+          firstname: 'TestUser',
+         
+          lastname:'testLast',
+          email:'ani@gmail.com',
+         
         },
+        {
+          id : 3,
+          action:'',
+          username: 'test2',
+          online: 'online',
+          firstname: 'TestUser',
+         
+          lastname:'testLast',
+          email:'ani@gmail.com',
+         
+        },
+        
+        
         
       ]    
 
@@ -178,17 +116,12 @@ export class AdminComponent implements OnInit {
   
   saveUser(){
     
-    if(this.optionsModel)
-    {
+   
       var role = <any>{};
      this.userObject.role=this.optionsModel
      console.log('---------userdata---------',this.userObject)
-    }
-    else
-    {
-      console.log("please select role first");
-      this.role_status=true;
-    }
+   
+   
   }
 
   delete(data,position){

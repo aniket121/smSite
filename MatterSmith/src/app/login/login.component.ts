@@ -74,13 +74,20 @@ export class LoginComponent implements OnInit {
           this.loginService.postUserLogin(data).subscribe((res: any) => {
 
               Cookie.set("auth_token",res.auth_token)
+              console.log("reponse",res);
               Cookie.set("username",res.username)
-              if(res.roles.length>1){
-                this.login_state = true;
-                this.role_list = res.roles;
-              }else{
-                this.router.navigate(['dashboard']);
+               Cookie.set("user",res.user)
+              if(res.user=="admin"){
+                 this.router.navigate(['admin']);
               }
+              if(res.user=="superuser"){
+                 this.router.navigate(['superadmin']);
+              }
+              if(res.success=="fail")
+              {
+                 this.validationError= false;
+              }
+             
               
             }, error => {
                 this.validationError= false;

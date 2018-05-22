@@ -27,13 +27,11 @@ export class SuperadminComponent implements OnInit {
     id :number,
     action:any,
     username: string,
-    online: string,
     firstname: string,
-    middlename: string,
     lastname:string,
     email:string,
-    country:string,
-    role:string,
+    userLimit:string
+
   }[];
   
   onlineuser :any = [];
@@ -53,98 +51,23 @@ export class SuperadminComponent implements OnInit {
           id : 1,
           action:'',
           username: 'test',
-          online: 'online',
           firstname: 'TestUser',
-          middlename: 'testmiddle',
           lastname:'testLast',
           email:'ani@gmail.com',
-          country:'US',
-          role:'adminstrator',
+          userLimit:'5'
+      
         },
-        {
-          id :2,
+         {
+          id : 2,
           action:'',
-          username: 'demo',
-          online: 'offline',
-          firstname: 'DemoUser',
-          middlename: 'demomiddle',
-          lastname:'demoLast',
-          email:'pravin@gmail.com',
-          country:'India',
-          role:'User',
+          username: 'test1',
+          firstname: 'TestUser',
+          lastname:'testLast',
+          email:'ani@gmail.com',
+          userLimit:'10'
+      
         },
-        {
-          id :3,
-          action:'',
-          username: 'demo',
-          online: 'offline',
-          firstname: 'DemoUser',
-          middlename: 'demomiddle',
-          lastname:'demoLast',
-          email:'pravin@gmail.com',
-          country:'India',
-          role:'User',
-        },
-        {
-          id :4,
-          action:'',
-          username: 'demo',
-          online: 'offline',
-          firstname: 'DemoUser',
-          middlename: 'demomiddle',
-          lastname:'demoLast',
-          email:'pravin@gmail.com',
-          country:'India',
-          role:'User',
-        },
-        {
-          id :5,
-          action:'',
-          username: 'demo',
-          online: 'offline',
-          firstname: 'DemoUser',
-          middlename: 'demomiddle',
-          lastname:'demoLast',
-          email:'pravin@gmail.com',
-          country:'India',
-          role:'User',
-        },
-        {
-          id :6,
-          action:'',
-          username: 'demo',
-          online: 'offline',
-          firstname: 'DemoUser',
-          middlename: 'demomiddle',
-          lastname:'demoLast',
-          email:'pravin@gmail.com',
-          country:'India',
-          role:'User',
-        },
-        {
-          id :7,
-          action:'',
-          username: 'demo',
-          online: 'offline',
-          firstname: 'DemoUser',
-          middlename: 'demomiddle',
-          lastname:'demoLast',
-          email:'pravin@gmail.com',
-          country:'India',
-          role:'User',
-        },
-        {
-          id :8,
-          action:'',
-          username: 'demo',
-          online: 'online',
-          firstname: 'DemoUser',
-          middlename: 'demomiddle',
-          lastname:'demoLast',
-          email:'pravin@gmail.com',
-          country:'India',
-          role:'User',
-        },
+        
         
       ]    
 
@@ -178,17 +101,12 @@ export class SuperadminComponent implements OnInit {
   
   saveUser(){
     
-    if(this.optionsModel)
-    {
+   
       var role = <any>{};
      this.userObject.role=this.optionsModel
      console.log('---------userdata---------',this.userObject)
-    }
-    else
-    {
-      console.log("please select role first");
-      this.role_status=true;
-    }
+     
+   
   }
 
   delete(data,position){
