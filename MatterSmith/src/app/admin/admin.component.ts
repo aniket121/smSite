@@ -23,6 +23,7 @@ export class AdminComponent implements OnInit {
   public user={};
   public userd={};
   public duplicate_users:any;
+  public useraddSatus:boolean=false;
   public all_users:any =  {};
   public role_status:boolean =false;
   public transactions: {
@@ -40,7 +41,7 @@ export class AdminComponent implements OnInit {
   public userObject=<any>{};
   optionsModel: number[];
   myOptions: IMultiSelectOption[];
-  constructor(private router: Router) {
+  constructor(private router: Router,public AdminService:AdminService) {
 
    }
 
@@ -120,9 +121,29 @@ export class AdminComponent implements OnInit {
       var role = <any>{};
      this.userObject.role=this.optionsModel
      console.log('---------userdata---------',this.userObject)
+      var admin_id=localStorage.getItem("admin_id");
+      this.userObject.admin_id=admin_id;
+       this.AdminService.addAdmin(this.userObject).subscribe((res: any) => {
+
+           
+
+            if(res.success=="true")
+            {
+                this.showSuccess('User has been added successfully');
+                 this.showDialog =false;   
+
+            }
+              
+            }, error => {
+               
+                console.info('error', error);
+
+                
+            })
+      }
    
-   
-  }
+  
+
 
   delete(data,position){
     this.modal_title = "Delete User";

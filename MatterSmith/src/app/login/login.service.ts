@@ -6,7 +6,7 @@ import { environment } from './../../environments/environment';
 @Injectable()
 export class LoginService {
     public activeToken: String;
-
+    public data:any;
     constructor(private http: HttpClient) {
         
     }

@@ -3,7 +3,8 @@ import { HttpClient } from "@angular/common/http";
 import 'rxjs/add/operator/map';
 import { environment } from './../../environments/environment';
 export interface UserResponse {
-   user:string
+   user:string,
+   data:string
 }
 @Injectable()
 export class SuperAdminService {
@@ -18,5 +19,11 @@ export class SuperAdminService {
     }
     addAdmin(data: any) {
         return this.http.post<UserResponse>(environment.BASE_URL + '/addadmin/', data).map(res => res);
+    }
+     getAdmin() {
+        return this.http.get<UserResponse>(environment.BASE_URL + '/addadmin/').map(res => res);
+    }
+     deleteUserapi(data:any) {
+        return this.http.post<UserResponse>(environment.BASE_URL + '/deleteuser/',data).map(res => res);
     }
 }

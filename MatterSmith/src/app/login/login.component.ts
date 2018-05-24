@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
   login(){
     Cookie.deleteAll()
-      if(this.username !='' && this.username.length >= 4){
+      if(this.username !='' && this.username.length >= 1){
                   this.usernameError = true;//error
                   this.usernameStatus = true; //status
                   this.validationError= true;
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         this.usernameStatus = false;
         this.validationError= true;
       }
-      if(this.password !=''  && this.password.length >= 4){
+      if(this.password !=''  && this.password.length >= 1){
         this.passwordError = true;//error
         this.passwordStatus = true; //status
         this.validationError= true;
@@ -72,6 +72,9 @@ export class LoginComponent implements OnInit {
           Cookie.set("customers", 'true')
           console.log(Cookie.get("users"));
           this.loginService.postUserLogin(data).subscribe((res: any) => {
+
+
+               localStorage.setItem("admin_id", res.id);
 
               Cookie.set("auth_token",res.auth_token)
               console.log("reponse",res);

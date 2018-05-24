@@ -14,10 +14,10 @@ export class SuperadminComponent implements OnInit {
   userRoles:string = '';
   public msgs:any=[];
   public modal_title:string = "";
-
+  public deleteuserid={}
   public showDialog:boolean = false;//modal status
   public deleteDialog:boolean =false;
-
+  public userID:any;
   public user={};
   public userd={};
   public duplicate_users:any;
@@ -27,10 +27,11 @@ export class SuperadminComponent implements OnInit {
     id :number,
     action:any,
     username: string,
-    firstname: string,
-    lastname:string,
+    first_name: string,
+    last_name:string,
     email:string,
-    userLimit:string
+    is_active:string,
+    userlimit__userlimit:string
 
   }[];
   
@@ -39,37 +40,33 @@ export class SuperadminComponent implements OnInit {
   public userObject=<any>{};
   optionsModel: number[];
   myOptions: IMultiSelectOption[];
+  currentUser:any=[];
   constructor(private router: Router,private superadminService : SuperAdminService) {
 
    }
 
   ngOnInit() {
- 
-        
-      this.transactions = [
-        {
-          id : 1,
-          action:'',
-          username: 'test',
-          firstname: 'TestUser',
-          lastname:'testLast',
-          email:'ani@gmail.com',
-          userLimit:'5'
+
+       this.superadminService.getAdmin().subscribe((res: any) => {
+
+            
+          
+           this.currentUser.push(res);
+           for(var i=0;i<res.data.length;i++)
+           {
+                 console.log('innn',res.data);
+                 this.transactions =res.data;
+                
+              
+            }, error => {
+               
+                console.info('error', error);
+
+                
+            })
+
+      console.log(this.currentUser)
       
-        },
-         {
-          id : 2,
-          action:'',
-          username: 'test1',
-          firstname: 'TestUser',
-          lastname:'testLast',
-          email:'ani@gmail.com',
-          userLimit:'10'
-      
-        },
-        
-        
-      ]    
 
        this.onlineuser = []
        this.onlineuser.push({label: 'All', value:null});
@@ -105,17 +102,57 @@ export class SuperadminComponent implements OnInit {
       var role = <any>{};
      this.userObject.role=this.optionsModel
      console.log('---------userdata---------',this.userObject)
+      this.superadminService.addAdmin(this.userObject).subscribe((res: any) => {
+
+            
+            if(res.success=="true")
+            {
+                this.showSuccess('Admin has been added successfully');
+                 this.showDialog =false;   
+
+            }
+            this.ngOnInit()
+              
+            }, error => {
+               
+                console.info('error', error);
+
+                
+            })
      
    
   }
 
+
   delete(data,position){
     this.modal_title = "Delete User";
     this.deleteDialog = true;//modal status
+    this.userID=data.id;
+   
   }
-  deleteUser(){
+  deleteUser(email:any){
      this.showSuccess('User has been deleted');
-     this.deleteDialog =false;   
+     this.deleteDialog =false; 
+     this.deleteuserid.user_id=this.userID
+      this.superadminService.deleteUserapi(this.deleteuserid).subscribe((res: any) => {
+
+            
+            if(res.success=="true")
+            {
+                this.showSuccess('Admin has been added successfully');
+                 this.showDialog =false;   
+
+            }
+            this.ngOnInit()
+              
+            }, error => {
+               
+                console.info('error', error);
+
+                
+            })
+       
+
   }
 
   edit(data,position){

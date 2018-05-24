@@ -10,7 +10,7 @@ export interface UserResponse {
 @Injectable()
 export class AdminService   {
     public activeToken: String;
-
+    public data:any;
     constructor(private http: HttpClient) {
         
     }
@@ -28,5 +28,8 @@ export class AdminService   {
         return false;
        }
        
+    }
+    addAdmin(data: any) {
+        return this.http.post<UserResponse>(environment.BASE_URL + '/addusers/', data).map(res => res);
     }
 }

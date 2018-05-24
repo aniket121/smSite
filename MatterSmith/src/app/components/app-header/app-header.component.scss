@@ -6,16 +6,15 @@
 }
 .sublogo{
 	color:white;
-	margin-left:56%;
-	font-family: "Arial, Helvetica, sans-serif";
+	font-family: "Arial";
 	 
 }
 .sublogo:hover {
   
 }
 #logo{
-	width:30%;
-	margin-left:4%;
+	width:40%;
+	margin-left:6%;
 }
 .btn-primary{
 	background-color:#0f2d50 !important;
@@ -39,6 +38,7 @@
   }
   #logo{
 	width:100%;
+	margin-left:0px;
 }
 .sublogo{
 	color:white;
@@ -72,7 +72,11 @@
 }
 }
 #topHeader{
-margin-bottom:1%;
+margin-bottom:5%;
+margin-top:2%;
+}
+.legal{
+	margin-top:2%;
 }
 
 
