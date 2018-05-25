@@ -170,7 +170,7 @@ export class AdminComponent implements OnInit {
       this.transactions = offline;
     }
   }
- deleteUser(email:any){
+ deleteUsers(email:any){
      this.showSuccess('User has been deleted');
      this.deleteDialog =false; 
      this.deleteuserid.user_id=this.userID
