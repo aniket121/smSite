@@ -23,20 +23,20 @@
 		
 				<ng-template let-col let-user="rowData" let-i="rowIndex" pTemplate="body">
 						<div class="container h-100 d-flex justify-content-center">
-							<i class="fa fa-lock" (click)="permission(user,i)" ></i> &nbsp;&nbsp;
+							<!-- <i class="fa fa-lock" (click)="permission(user,i)" ></i> &nbsp;&nbsp; -->
 							<i class="fa fa-edit" (click)="edit(user,i)" ></i> &nbsp;&nbsp;
 							<i class="fa fa-trash" (click)="delete(user,i)"></i>
 						</div>
 				</ng-template>
 
 	  </p-column>
-      <p-column field="username" header="Username" [filter]="true" [sortable]="true"></p-column>
+      <p-column field="userobject__first_name" header="Username" [filter]="true" [sortable]="true"></p-column>
 
 			
 
-			<p-column field="firstname" header="Firstname" [filter]="true" [sortable]="true"></p-column>
-			<p-column field="lastname" header="Lastname" [filter]="true" [sortable]="true"></p-column>
-			<p-column field="email" header="Email" [filter]="true" [sortable]="true"></p-column>
+			<p-column field="userobject__last_name" header="Firstname" [filter]="true" [sortable]="true"></p-column>
+			<p-column field="userobject__username" header="Lastname" [filter]="true" [sortable]="true"></p-column>
+			<p-column field="userobject__email" header="Email" [filter]="true" [sortable]="true"></p-column>
 </p-dataTable>
 
 
@@ -52,14 +52,14 @@
 					<label class="container h-100 d-flex "  for="input-small">First Name:<div class="mendatory-color"> *</div>  </label>
 				</div>
 				<div class="col-sm-6">
-					<input type="text" [(ngModel)]="userObject.firstname" name="firstname" pattern="^[a-zA-Z]+$"  class="form-control form-control-sm" required #firstname="ngModel" 
+					<input type="text" [(ngModel)]="userObject.userobject__first_name" name="userobject__first_name" pattern="^[a-zA-Z]+$"  class="form-control form-control-sm" required #userobject__first_name="ngModel" 
 >
 
-					<div *ngIf="firstname.errors && (firstname.dirty || firstname.touched)" class="alert alert-danger" >
-                    <div [hidden]="!firstname.errors.required">
+					<div *ngIf="userobject__first_name.errors && (userobject__first_name.dirty || userobject__first_name.touched)" class="alert alert-danger" >
+                    <div [hidden]="!userobject__first_name.errors.required">
                       Firstname is required!
                     </div>
-                    <div [hidden]="firstname.errors.required">
+                    <div [hidden]="userobject__first_name.errors.required">
                       Firstname is required!
                     </div>
                     
@@ -75,12 +75,12 @@
 					<label class="container h-100 d-flex" pattern="^[a-zA-Z]+$"  for="input-small">Last Name*:<div class="mendatory-color"> *</div> </label>
 				</div>
 				<div class="col-sm-6">
-					<input type="text" name="lastname" [(ngModel)]="userObject.lastname" pattern="^[a-zA-Z]+$"  required class="form-control form-control-sm" #lastname="ngModel" >
-					<div *ngIf="lastname.errors && (lastname.dirty || lastname.touched)" class="alert alert-danger" >
-                    <div [hidden]="!lastname.errors.required">
+					<input type="text" name="userobject__last_name" [(ngModel)]="userObject.userobject__last_name" pattern="^[a-zA-Z]+$"  required class="form-control form-control-sm" #userobject__last_name="ngModel" >
+					<div *ngIf="userobject__last_name.errors && (userobject__last_name.dirty || userobject__last_name.touched)" class="alert alert-danger" >
+                    <div [hidden]="!userobject__last_name.errors.required">
                       Lastname is required!
                     </div>
-                    <div [hidden]="lastname.errors.required">
+                    <div [hidden]="userobject__last_name.errors.required">
                       Lastname is required!
                     </div>
                     
@@ -94,12 +94,12 @@
 					<label class="container h-100 d-flex "  for="input-small">Email ID:<div class="mendatory-color">*</div> </label>
 				</div>
 				<div class="col-sm-6">
-					<input type="text" name="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" [(ngModel)]="userObject.email" required class="form-control form-control-sm"  #email="ngModel">
-					<div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger" >
-                    <div [hidden]="!email.errors.required">
+					<input type="text" name="userobject__email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" [(ngModel)]="userObject.userobject__email" required class="form-control form-control-sm"  #userobject__email="ngModel">
+					<div *ngIf="userobject__email.errors && (userobject__email.dirty || userobject__email.touched)" class="alert alert-danger" >
+                    <div [hidden]="!userobject__email.errors.required">
                       Email is required!
                     </div>
-                    <div [hidden]="email.errors.required">
+                    <div [hidden]="userobject__email.errors.required">
                       Email is required!
                     </div>
                     
@@ -113,12 +113,12 @@
 					<label class="container h-100 d-flex "  for="input-small">Username:<div class="mendatory-color"> *</div> </label>
 				</div>
 				<div class="col-sm-6">
-					<input type="text" name="username" [(ngModel)]="userObject.username" required class="form-control form-control-sm"   #username="ngModel" >
-					<div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger" >
-                    <div [hidden]="!username.errors.required">
+					<input type="text" name="userobject__username" [(ngModel)]="userObject.userobject__username" required class="form-control form-control-sm"   #userobject__username="ngModel" >
+					<div *ngIf="userobject__username.errors && (userobject__username.dirty || userobject__username.touched)" class="alert alert-danger" >
+                    <div [hidden]="!userobject__username.errors.required">
                       Username is required!
                     </div>
-                    <div [hidden]="username.errors.required">
+                    <div [hidden]="userobject__username.errors.required">
                       Username is required!
                     </div>
                    
@@ -128,7 +128,7 @@
 				
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row" *ngIf="hidePasswordField">
 				<div class="col-sm-5" >
 					<label class="container h-100 d-flex"  for="input-small">Password:<div class="mendatory-color"> *</div> </label>
 				</div>

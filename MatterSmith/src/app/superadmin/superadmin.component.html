@@ -23,7 +23,8 @@
 		
 				<ng-template let-col let-user="rowData" let-i="rowIndex" pTemplate="body">
 						<div class="container h-100 d-flex justify-content-center">
-							<i class="fa fa-lock" (click)="permission(user,i)" ></i> &nbsp;&nbsp;
+							<i   class="fa fa-lock" (click)="permission(user,i)" ></i> &nbsp;&nbsp;
+							
 							<i class="fa fa-edit" (click)="edit(user,i)" ></i> &nbsp;&nbsp;
 							<i class="fa fa-trash" (click)="delete(user,i)"></i>
 						</div>
@@ -43,6 +44,7 @@
 			<p-column field="userlimit__userlimit" header="userlimit" [filter]="true" [sortable]="true"></p-column>
 			<p-column field="last_name" header="Lastname" [filter]="true" [sortable]="true"></p-column>
 			<p-column field="email" header="Email" [filter]="true" [sortable]="true"></p-column>
+			<p-column field="is_staff" header="Role" [filter]="true" [sortable]="true"></p-column>
 			
 </p-dataTable>
 
@@ -59,14 +61,14 @@
 					<label class="container h-100 d-flex "  for="input-small">First Name:<div class="mendatory-color"> *</div>  </label>
 				</div>
 				<div class="col-sm-6">
-					<input type="text" [(ngModel)]="userObject.firstname" name="firstname" pattern="^[a-zA-Z]+$"  class="form-control form-control-sm" required #firstname="ngModel" 
+					<input type="text" [(ngModel)]="userObject.first_name" name="first_name" pattern="^[a-zA-Z]+$"  class="form-control form-control-sm" required #first_name="ngModel" 
 >
 
-					<div *ngIf="firstname.errors && (firstname.dirty || firstname.touched)" class="alert alert-danger" >
-                    <div [hidden]="!firstname.errors.required">
+					<div *ngIf="first_name.errors && (first_name.dirty || first_name.touched)" class="alert alert-danger" >
+                    <div [hidden]="!first_name.errors.required">
                       Firstname is required!
                     </div>
-                    <div [hidden]="firstname.errors.required">
+                    <div [hidden]="first_name.errors.required">
                       Firstname is required!
                     </div>
                     
@@ -82,12 +84,12 @@
 					<label class="container h-100 d-flex" pattern="^[a-zA-Z]+$"  for="input-small">Last Name*:<div class="mendatory-color"> *</div> </label>
 				</div>
 				<div class="col-sm-6">
-					<input type="text" name="lastname" [(ngModel)]="userObject.lastname" pattern="^[a-zA-Z]+$"  required class="form-control form-control-sm" #lastname="ngModel" >
-					<div *ngIf="lastname.errors && (lastname.dirty || lastname.touched)" class="alert alert-danger" >
-                    <div [hidden]="!lastname.errors.required">
+					<input type="text" name="last_name" [(ngModel)]="userObject.last_name" pattern="^[a-zA-Z]+$"  required class="form-control form-control-sm" #last_name="ngModel" >
+					<div *ngIf="last_name.errors && (last_name.dirty || last_name.touched)" class="alert alert-danger" >
+                    <div [hidden]="!last_name.errors.required">
                       Lastname is required!
                     </div>
-                    <div [hidden]="lastname.errors.required">
+                    <div [hidden]="last_name.errors.required">
                       Lastname is required!
                     </div>
                     
@@ -135,7 +137,7 @@
 				
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row" *ngIf="hidePassword">
 				<div class="col-sm-5" >
 					<label class="container h-100 d-flex"  for="input-small">Password:<div class="mendatory-color"> *</div> </label>
 				</div>
@@ -154,17 +156,17 @@
 				</div>
 				
             </div>
-            <div class="form-group row">
+            <div class="form-group row" >
 				<div class="col-sm-5" >
 					<label class="container h-100 d-flex"  for="input-small">Userlimit:<div class="mendatory-color"> *</div> </label>
 				</div>
 				<div class="col-sm-6">
-					<input type="text" name="userLimit"  [(ngModel)]="userObject.userLimit" required class="form-control form-control-sm" #userLimit="ngModel">
-					<div *ngIf="userLimit.errors && (password.dirty || userLimit.touched)" class="alert alert-danger" >
-                    <div [hidden]="!userLimit.errors.required">
+					<input type="text" name="userlimit__userlimit"  [(ngModel)]="userObject.userlimit__userlimit" required class="form-control form-control-sm" #userlimit__userlimit="ngModel">
+					<div *ngIf="userlimit__userlimit.errors && (userlimit__userlimit.dirty || userlimit__userlimit.touched)" class="alert alert-danger" >
+                    <div [hidden]="!userlimit__userlimit.errors.required">
                       this field is required!
                     </div>
-                    <div [hidden]="userLimit.errors.required">
+                    <div [hidden]="userlimit__userlimit.errors.required">
                       userlimit is required!
                     </div>
                      
@@ -173,6 +175,7 @@
 				</div>
 				
             </div>
+
 
            <!--  <div class="form-group row">
 							<div class="col-sm-5" >

@@ -19,21 +19,22 @@ export class AdminComponent implements OnInit {
 
   public showDialog:boolean = false;//modal status
   public deleteDialog:boolean =false;
-
+  public deleteuserid={user_id:''}
   public user={};
   public userd={};
   public duplicate_users:any;
   public useraddSatus:boolean=false;
   public all_users:any =  {};
   public role_status:boolean =false;
+  public hidePasswordField:boolean =false;
+  public userID:any;
   public transactions: {
     id :number,
     action:any,
-    username: string,
-    online: string,
-    firstname: string,
-    lastname:string,
-    email:string,
+    userobject__first_name: string,
+    userobject__last_name: string,
+    userobject__username:string,
+    userobject__email:string,
   }[];
   
   onlineuser :any = [];
@@ -46,46 +47,27 @@ export class AdminComponent implements OnInit {
    }
 
   ngOnInit() {
+
+      
+      this.AdminService.getAdminusers().subscribe((res: any) => {
+
+              console.log(res)
+              for(var i=0;i<res.data.length;i++){
+                 this.transactions =res.data
+
+               }  
+   
+            
+              
+            }, error => {
+               
+                console.info('error', error);
+
+                
+            })
  
         
-      this.transactions = [
-        {
-          id : 1,
-          action:'',
-          username: 'test',
-          online: 'online',
-          firstname: 'TestUser',
-         
-          lastname:'testLast',
-          email:'ani@gmail.com',
-         
-        },
-        {
-          id : 2,
-          action:'',
-          username: 'test1',
-          online: 'online',
-          firstname: 'TestUser',
-         
-          lastname:'testLast',
-          email:'ani@gmail.com',
-         
-        },
-        {
-          id : 3,
-          action:'',
-          username: 'test2',
-          online: 'online',
-          firstname: 'TestUser',
-         
-          lastname:'testLast',
-          email:'ani@gmail.com',
-         
-        },
-        
-        
-        
-      ]    
+    
 
        this.onlineuser = []
        this.onlineuser.push({label: 'All', value:null});
@@ -110,6 +92,7 @@ export class AdminComponent implements OnInit {
     this.msgs =[{severity:'success', summary:recordStatus}];
   }
   addUser(){
+    this.hidePasswordField=true;
     this.userObject ={};
     this.showDialog = !this.showDialog;
     this.modal_title = "Add User";
@@ -122,7 +105,7 @@ export class AdminComponent implements OnInit {
      this.userObject.role=this.optionsModel
      console.log('---------userdata---------',this.userObject)
       var admin_id=localStorage.getItem("admin_id");
-      this.userObject.admin_id=admin_id;
+      this.userObject.adminid=admin_id;
        this.AdminService.addAdmin(this.userObject).subscribe((res: any) => {
 
            
@@ -132,7 +115,9 @@ export class AdminComponent implements OnInit {
                 this.showSuccess('User has been added successfully');
                  this.showDialog =false;   
 
+
             }
+             this.ngOnInit();
               
             }, error => {
                
@@ -148,6 +133,8 @@ export class AdminComponent implements OnInit {
   delete(data,position){
     this.modal_title = "Delete User";
     this.deleteDialog = true;//modal status
+     this.userID=data.userobject__id;
+     console.log(data)
   }
   deleteUser(){
      this.showSuccess('User has been deleted');
@@ -155,6 +142,7 @@ export class AdminComponent implements OnInit {
   }
 
   edit(data,position){
+    this.hidePasswordField=false;
     this.modal_title = "Edit User";
     this.userObject = data;
     this.showDialog = true;    
@@ -182,6 +170,32 @@ export class AdminComponent implements OnInit {
       this.transactions = offline;
     }
   }
+ deleteUser(email:any){
+     this.showSuccess('User has been deleted');
+     this.deleteDialog =false; 
+     this.deleteuserid.user_id=this.userID
+     console.log(this.deleteuserid)
+      this.AdminService.deleteUserapi(this.deleteuserid).subscribe((res: any) => {
+
+            
+            if(res.success=="true")
+            {
+                this.showSuccess('Admin has been added successfully');
+                 this.showDialog =false;   
+
+            }
+            this.ngOnInit()
+              
+            }, error => {
+               
+                console.info('error', error);
+
+                
+            })
+       
+
+  }
+
 
 
 

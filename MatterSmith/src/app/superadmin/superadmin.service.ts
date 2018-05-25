@@ -26,4 +26,8 @@ export class SuperAdminService {
      deleteUserapi(data:any) {
         return this.http.post<UserResponse>(environment.BASE_URL + '/deleteuser/',data).map(res => res);
     }
+     updateUser(data:any) {
+        return this.http.post<UserResponse>(environment.BASE_URL + '/updateUser/',data).map(res => res);
+    }
+    
 }

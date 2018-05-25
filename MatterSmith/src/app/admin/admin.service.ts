@@ -32,4 +32,11 @@ export class AdminService   {
     addAdmin(data: any) {
         return this.http.post<UserResponse>(environment.BASE_URL + '/addusers/', data).map(res => res);
     }
+    getAdminusers() {
+        var adminid=localStorage.getItem("admin_id");
+        return this.http.get<UserResponse>(environment.BASE_URL + '/addusers/'+ adminid+'/').map(res => res);
+    }
+     deleteUserapi(data:any) {
+        return this.http.post<UserResponse>(environment.BASE_URL + '/deleteuser/',data).map(res => res);
+    }
 }

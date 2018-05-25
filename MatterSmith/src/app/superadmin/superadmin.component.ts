@@ -14,7 +14,7 @@ export class SuperadminComponent implements OnInit {
   userRoles:string = '';
   public msgs:any=[];
   public modal_title:string = "";
-  public deleteuserid={}
+  public deleteuserid={user_id:''}
   public showDialog:boolean = false;//modal status
   public deleteDialog:boolean =false;
   public userID:any;
@@ -23,6 +23,8 @@ export class SuperadminComponent implements OnInit {
   public duplicate_users:any;
   public all_users:any =  {};
   public role_status:boolean =false;
+  public user_id:any;
+  public hideField:boolean = false;
   public transactions: {
     id :number,
     action:any,
@@ -31,7 +33,8 @@ export class SuperadminComponent implements OnInit {
     last_name:string,
     email:string,
     is_active:string,
-    userlimit__userlimit:string
+    userlimit__userlimit:string,
+    is_staff:string
 
   }[];
   
@@ -41,31 +44,44 @@ export class SuperadminComponent implements OnInit {
   optionsModel: number[];
   myOptions: IMultiSelectOption[];
   currentUser:any=[];
+  public hidePassword:boolean=true;
   constructor(private router: Router,private superadminService : SuperAdminService) {
 
    }
 
   ngOnInit() {
-
+       this.hidePassword=true;
        this.superadminService.getAdmin().subscribe((res: any) => {
 
             
-          
            this.currentUser.push(res);
            for(var i=0;i<res.data.length;i++)
            {
-                 console.log('innn',res.data);
+                 console.log(res.data[i].is_active)
+                 if(res.data[i].is_active){
+                   res.data[i].is_active='Active'
+                 }
+                 else{
+                    res.data[i].is_active='InActive'
+                 }
+
+                  if(res.data[i].is_staff){
+                   res.data[i].is_staff='Admin'
+                 }
+                 else{
+                    res.data[i].is_staff='User'
+                 }
                  this.transactions =res.data;
                 
               
-            }, error => {
+            }}, error => {
                
                 console.info('error', error);
 
                 
             })
 
-      console.log(this.currentUser)
+      
       
 
        this.onlineuser = []
@@ -91,6 +107,7 @@ export class SuperadminComponent implements OnInit {
     this.msgs =[{severity:'success', summary:recordStatus}];
   }
   addUser(){
+    this.hidePassword=true;
     this.userObject ={};
     this.showDialog = !this.showDialog;
     this.modal_title = "Add User";
@@ -98,7 +115,30 @@ export class SuperadminComponent implements OnInit {
   
   saveUser(){
     
-   
+    if(this.userObject.id){
+        console.log("update api")
+         this.superadminService.updateUser(this.userObject).subscribe((res: any) => {
+
+            
+            if(res.success=="true")
+            {
+                this.showSuccess('Record  has been updated successfully');
+                 this.showDialog =false;   
+
+            }
+            this.ngOnInit()
+              
+            }, error => {
+               
+                console.info('error', error);
+
+                
+            })
+     
+
+    }
+    else{
+      console.log("add api")
       var role = <any>{};
      this.userObject.role=this.optionsModel
      console.log('---------userdata---------',this.userObject)
@@ -122,6 +162,7 @@ export class SuperadminComponent implements OnInit {
      
    
   }
+}
 
 
   delete(data,position){
@@ -156,6 +197,9 @@ export class SuperadminComponent implements OnInit {
   }
 
   edit(data,position){
+    this.hidePassword=false;
+    console.log(data)
+     console.log(this.hideField)
     this.modal_title = "Edit User";
     this.userObject = data;
     this.showDialog = true;    
