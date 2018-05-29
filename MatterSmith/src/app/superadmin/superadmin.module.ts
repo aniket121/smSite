@@ -15,12 +15,13 @@ import {DialogModule} from 'primeng/dialog';
 import {MessageService} from 'primeng/components/common/messageservice';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { SuperAdminService } from './superadmin.service';
-
+import {ToggleButtonModule} from 'primeng/togglebutton';
 @NgModule({
   imports: [
     SuperAdminRoutingModule,
     FormsModule,
     DataTableModule,
+    ToggleButtonModule,
     DropdownModule,
     GrowlModule,
     DialogModule,

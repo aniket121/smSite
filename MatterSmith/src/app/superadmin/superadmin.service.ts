@@ -29,5 +29,11 @@ export class SuperAdminService {
      updateUser(data:any) {
         return this.http.post<UserResponse>(environment.BASE_URL + '/updateUser/',data).map(res => res);
     }
+     activeUser(data:any) {
+        return this.http.post<UserResponse>(environment.BASE_URL + '/active-user/',data).map(res => res);
+    }
+     inactiveUser(data:any) {
+        return this.http.post<UserResponse>(environment.BASE_URL + '/inactive-user/',data).map(res => res);
+    }
     
 }

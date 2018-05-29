@@ -25,6 +25,7 @@ export class SuperadminComponent implements OnInit {
   public role_status:boolean =false;
   public user_id:any;
   public hideField:boolean = false;
+  public activeobject={}
   public transactions: {
     id :number,
     action:any,
@@ -163,7 +164,53 @@ export class SuperadminComponent implements OnInit {
    
   }
 }
+inactiveUser(data:any){
+  console.log("inactive user",data)
+  this.userObject.user_id=data.id;
+  console.log("user_object",this.userObject)
+   this.superadminService.inactiveUser(this.userObject).subscribe((res: any) => {
 
+            
+            if(res.success=="true")
+            {
+                this.showSuccess('user has been Inactive successfully');
+                 this.showDialog =false;   
+
+            }
+            this.ngOnInit()
+              
+            }, error => {
+               
+                console.info('error', error);
+
+                
+            })
+  }
+
+
+
+activeUser(data:any){
+     console.log("active user",data)
+  this.userObject.user_id=data.id;
+  console.log("user_object",this.userObject)
+   this.superadminService.activeUser(this.userObject).subscribe((res: any) => {
+
+            
+            if(res.success=="true")
+            {
+                this.showSuccess('user has been actived successfully');
+                 this.showDialog =false;   
+
+            }
+            this.ngOnInit()
+              
+            }, error => {
+               
+                console.info('error', error);
+
+                
+            })
+}
 
   delete(data,position){
     this.modal_title = "Delete User";

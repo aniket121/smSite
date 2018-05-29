@@ -23,8 +23,9 @@
 		
 				<ng-template let-col let-user="rowData" let-i="rowIndex" pTemplate="body">
 						<div class="container h-100 d-flex justify-content-center">
-							<i   class="fa fa-lock" (click)="permission(user,i)" ></i> &nbsp;&nbsp;
-							
+							<i *ngIf="user.is_active=='InActive'" class="fa fa-lock" (click)="activeUser(user,i)" ></i> &nbsp;&nbsp;
+							<i  *ngIf="user.is_active=='Active'" class="fa fa-unlock" (click)="inactiveUser(user,i)" ></i> &nbsp;&nbsp;
+
 							<i class="fa fa-edit" (click)="edit(user,i)" ></i> &nbsp;&nbsp;
 							<i class="fa fa-trash" (click)="delete(user,i)"></i>
 						</div>

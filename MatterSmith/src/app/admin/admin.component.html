@@ -3,6 +3,8 @@
 <p-dataTable [value]="transactions" reorderableColumns="true" selectionMode="single" resizableColumns="true" columnResizeMode="expand" [responsive]="true" [sortField]="sortField" [paginator]="true" [rows]="10" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" #dt>
     <p-header>
      <div class= "col-12 breadcrum">
+       
+        
 		<div class="row">
 				<li class="fa fa-user-plus col-2 user-header" (click)="addUser()" > Add User</li>
 
@@ -30,17 +32,20 @@
 				</ng-template>
 
 	  </p-column>
-      <p-column field="userobject__first_name" header="Username" [filter]="true" [sortable]="true"></p-column>
+      <p-column field="userobject__first_name" header="Firstname" [filter]="true" [sortable]="true"></p-column>
 
 			
 
-			<p-column field="userobject__last_name" header="Firstname" [filter]="true" [sortable]="true"></p-column>
-			<p-column field="userobject__username" header="Lastname" [filter]="true" [sortable]="true"></p-column>
+			<p-column field="userobject__last_name" header="Lastname" [filter]="true" [sortable]="true"></p-column>
+			<p-column field="userobject__username" header="Username" [filter]="true" [sortable]="true"></p-column>
 			<p-column field="userobject__email" header="Email" [filter]="true" [sortable]="true"></p-column>
 </p-dataTable>
 
 
 <p-dialog [(visible)]="showDialog" header="Add/Edit User">
+    <div class="alert alert-danger" *ngIf="limitexceede">
+              <strong>Error!</strong> user limit size exceded.
+         </div>
 	<div>
 				<!-- <div  style="background-color: cornflowerblue;" class="container h-100 d-flex justify-content-center">
 						{{modal_title}}

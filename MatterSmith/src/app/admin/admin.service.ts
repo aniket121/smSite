@@ -39,4 +39,7 @@ export class AdminService   {
      deleteUserapi(data:any) {
         return this.http.post<UserResponse>(environment.BASE_URL + '/deleteuser/',data).map(res => res);
     }
+     updateUserapi(data:any) {
+        return this.http.put<UserResponse>(environment.BASE_URL + '/addadmin/',data).map(res => res);
+    }
 }

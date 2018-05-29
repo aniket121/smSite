@@ -28,6 +28,7 @@ export class AdminComponent implements OnInit {
   public role_status:boolean =false;
   public hidePasswordField:boolean =false;
   public userID:any;
+  public limitexceede;
   public transactions: {
     id :number,
     action:any,
@@ -99,8 +100,34 @@ export class AdminComponent implements OnInit {
   }
   
   saveUser(){
-    
-   
+       console.log(this.userObject)
+      if(this.userObject.userobject__id){
+
+        console.log("updated api")
+        
+        this.AdminService.updateUserapi(this.userObject).subscribe((res: any) => {
+
+           
+
+            if(res.success=="true")
+            {
+                this.showSuccess('User has been updated successfully');
+                 this.showDialog =false;   
+
+
+            }
+             this.ngOnInit();
+              
+            }, error => {
+               
+                console.info('error', error);
+                this.limitexceede=true;
+
+                
+            })
+
+      }
+      else{
       var role = <any>{};
      this.userObject.role=this.optionsModel
      console.log('---------userdata---------',this.userObject)
@@ -122,9 +149,13 @@ export class AdminComponent implements OnInit {
             }, error => {
                
                 console.info('error', error);
+                this.limitexceede=true;
 
                 
             })
+      }
+
+
       }
    
   
